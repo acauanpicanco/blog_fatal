@@ -11,12 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'HomeController@index' )->name('home');
 
-Route::get('/post/{slug}', function () {
-    return view('blog.show');
-});
-
+Route::get('/post/{slug}', 'PostController@show' )->name('post.show');
 
