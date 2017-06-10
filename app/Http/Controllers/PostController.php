@@ -57,63 +57,23 @@ class PostController extends Controller
         $post['slug'] = str_slug($post['titulo']);
 
         
-
-
-        // $request->slug = str_slug($request->titulo);
-
-        // $post = Post::create($request->all());
-
-        //$post = Post::create(['slug' => str_slug($request->titulo)]);
-
-
-
         
-        // $request->all();
-      
-        // $post->slug = str_slug($request->titulo);
-
-       
-        
-        // $post->titulo = $request->titulo;
-        // $post->tags = $request->tags;
-        // $post->texto = $request->texto;
-        // if(Input::file('imagem'){
-        //     $imagem = Input::file('imagem');
-        //     $extensao = $imagem->getClientOriginalExtension();
-        //     if($extensao != 'jpg' && $extensao != 'png' ){
-        //         return back()->width('erro', "Erro: Este arquivo não é uma imagem do formato aceito.");
-        //     }
-
-
-        // }
+    
 
         
         if($post['imagem']){
-            // $arquivo = $request->file('imagem');
+        
 
             $arquivo = str_slug( $request->file('imagem')->getClientOriginalName() );
             
 
             $request->file('imagem')->move( 'post-img/' ,  $post['slug'].$request->file('imagem')->getClientOriginalName());
 
-
-            // $arquivo->move(asset(), $arquivo->getClientOriginalName());
             $post['imagem'] = 'post-img/'.$post['slug'] .  $request->file('imagem')->getClientOriginalName();
            
         }
 
-        // //Photo name
-        // $photo = str_slug( env('APP_NAME') . $request->file('photo')->getClientOriginalName() );
-
-        // //Move photo
-        // $request->file('photo')
-        //                 ->move( public_path() . '/post-img' ,  $photo);
-
-        // //Adding photo to request
-        // $request = collect( $request->all() )
-        //                                     ->put('photo', $photo);
-
-        // $post['imagem'] = $arquivo->getClientOriginalName();
+       
 
         Post::create($post);
 
