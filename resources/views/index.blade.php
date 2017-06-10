@@ -17,22 +17,47 @@
         </div>
     </header>
 
+
+    <div class="container">
+        <div class="row">
+            <ul class="pager pull-left">
+                <li class="next">
+                    <a href="{{ route('post.create') }}">Criar post </a>
+                </li>
+            </ul>
+        </div>
+    </div>
     
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 
               @foreach($posts as $post)
-                
+                <ul class="pager pull-right">
+                        <li class="next">
+                            <a href="{{ route('post.delete', $post->id) }}">Apagar</a>
+                        </li>
+                        <li class="next">
+                            <a href="{{ route('post.edit', $post->slug) }}">Editar</a>
+                        </li>
+                    </ul>
                 <div class="post-preview">
-                    <a href="{{ route('post.show', ['slug' => str_slug($post->titulo, '-' )]) }}">
+                    <a href="{{ route('post.show', $post->slug ) }}">
                         <h2 class="post-title">
                             {{ $post->titulo }}
                         </h2>
                         
                     </a>
                     <p class="post-meta">Postado em {{ $post -> created_at->format('d-m-Y')}}</p>
+
+
+                    
+
+
+
                 </div>
+
+                
 
                 <hr>
 
